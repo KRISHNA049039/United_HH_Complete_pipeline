@@ -708,6 +708,284 @@ LIMIT 10;
 
 ---
 
+### 2.5 Macroeconomic Data
+
+#### fact_macro_indicators
+
+**Purpose**: Economic indicators that affect market performance and company valuations
+
+**Schema**:
+```sql
+CREATE TABLE presentation.fact_macro_indicators (
+    indicator_key BIGINT PRIMARY KEY,
+    indicator_name VARCHAR(100),
+    indicator_date DATE,
+    indicator_value DECIMAL(18,4),
+    unit VARCHAR(50),
+    frequency VARCHAR(20),  -- DAILY, WEEKLY, MONTHLY, QUARTERLY, ANNUAL
+    source VARCHAR(100),
+    publication_date DATE,
+    load_timestamp TIMESTAMP
+);
+```
+
+**Data Frequency**: Varies by indicator (daily to annual)
+**Historical Coverage**: 2000-present
+**Update Schedule**: Daily for daily indicators, monthly for others
+**Source**: RBI, MOSPI, Bloomberg, Trading Economics
+
+---
+
+#### Key Macroeconomic Indicators
+
+**Interest Rates**
+
+**Repo Rate**
+- RBI's key policy rate
+- Affects borrowing costs across economy
+- Frequency: Event-driven (typically quarterly)
+- Impact: Higher rates → lower valuations
+
+**10-Year Government Bond Yield**
+- Risk-free rate benchmark
+- Used in DCF valuations
+- Frequency: Daily
+- Impact: Higher yields → lower equity valuations
+
+**Bank Rate, Reverse Repo Rate**
+- Additional monetary policy tools
+- Frequency: Event-driven
+
+---
+
+**Inflation Indicators**
+
+**CPI (Consumer Price Index)**
+- Measures consumer price inflation
+- RBI's primary inflation target: 4% ±2%
+- Frequency: Monthly
+- Impact: High inflation → rate hikes → market pressure
+
+**WPI (Wholesale Price Index)**
+- Measures wholesale/producer prices
+- Leading indicator for CPI
+- Frequency: Monthly
+- Impact: Input cost pressure on companies
+
+**Core Inflation**
+- CPI excluding food and fuel
+- More stable measure
+- Frequency: Monthly
+
+---
+
+**GDP and Growth**
+
+**GDP Growth Rate**
+- Quarterly economic growth
+- Frequency: Quarterly (with 2-month lag)
+- Impact: Higher growth → better earnings → higher valuations
+
+**IIP (Index of Industrial Production)**
+- Measures industrial output
+- Leading indicator for GDP
+- Frequency: Monthly
+- Impact: Tracks manufacturing sector health
+
+**PMI (Purchasing Managers' Index)**
+- Manufacturing and Services PMI
+- >50 indicates expansion
+- Frequency: Monthly
+- Impact: Forward-looking growth indicator
+
+---
+
+**Currency and Trade**
+
+**USD/INR Exchange Rate**
+- Rupee vs US Dollar
+- Frequency: Daily
+- Impact: 
+  - Weaker rupee → benefits exporters (IT, Pharma)
+  - Stronger rupee → benefits importers
+
+**Trade Balance**
+- Exports minus Imports
+- Frequency: Monthly
+- Impact: Deficit indicates currency pressure
+
+**Foreign Exchange Reserves**
+- RBI's forex holdings
+- Frequency: Weekly
+- Impact: Higher reserves → currency stability
+
+---
+
+**Fiscal Indicators**
+
+**Fiscal Deficit**
+- Government spending vs revenue
+- Frequency: Monthly (cumulative)
+- Impact: High deficit → borrowing pressure → higher yields
+
+**GST Collections**
+- Indirect tax revenue
+- Proxy for economic activity
+- Frequency: Monthly
+- Impact: Higher collections → stronger economy
+
+---
+
+**Commodity Prices**
+
+**Crude Oil (Brent)**
+- Global oil benchmark
+- Frequency: Daily
+- Impact: 
+  - Higher oil → inflation pressure
+  - India imports 80%+ of oil needs
+
+**Gold Price**
+- Safe haven asset
+- Frequency: Daily
+- Impact: Inverse correlation with equities
+
+**Steel, Copper, Aluminum**
+- Industrial metal prices
+- Frequency: Daily
+- Impact: Input costs for manufacturing
+
+---
+
+**Global Indicators**
+
+**US Fed Funds Rate**
+- US policy rate
+- Frequency: Event-driven
+- Impact: Higher US rates → FII outflows from India
+
+**US 10-Year Treasury Yield**
+- Global risk-free rate
+- Frequency: Daily
+- Impact: Affects emerging market flows
+
+**VIX (Volatility Index)**
+- Global fear gauge
+- Frequency: Daily
+- Impact: Higher VIX → risk-off → EM outflows
+
+**DXY (Dollar Index)**
+- US Dollar strength
+- Frequency: Daily
+- Impact: Stronger dollar → EM currency pressure
+
+---
+
+#### Macro Data Usage Examples
+
+**Correlation Analysis**:
+```sql
+-- Correlation between repo rate and NIFTY returns
+SELECT 
+    m.indicator_date,
+    m.indicator_value AS repo_rate,
+    p.close_price AS nifty_close,
+    (p.close_price / LAG(p.close_price, 21) OVER (ORDER BY p.price_date) - 1) * 100 AS nifty_1m_return
+FROM fact_macro_indicators m
+JOIN fact_daily_prices p 
+    ON m.indicator_date = p.price_date
+    AND p.security_id = 'NIFTY50'
+WHERE m.indicator_name = 'REPO_RATE'
+  AND m.indicator_date >= '2020-01-01'
+ORDER BY m.indicator_date;
+```
+
+**Sector Impact Analysis**:
+```sql
+-- IT sector performance vs USD/INR
+SELECT 
+    d.month,
+    AVG(m.indicator_value) AS avg_usd_inr,
+    AVG(p.price_change_pct) AS avg_it_return
+FROM fact_macro_indicators m
+JOIN dim_date d ON m.indicator_date = d.date_key
+JOIN fact_daily_prices p ON d.date_key = p.price_date
+JOIN dim_security s ON p.security_key = s.security_key
+WHERE m.indicator_name = 'USD_INR'
+  AND s.sector = 'Information Technology'
+  AND d.year >= 2020
+GROUP BY d.month
+ORDER BY d.month;
+```
+
+**Valuation Context**:
+```sql
+-- P/E ratio vs 10-year yield (equity risk premium)
+WITH market_pe AS (
+    SELECT 
+        reporting_period_end,
+        AVG(close_price / NULLIF(eps, 0)) AS avg_pe
+    FROM fact_quarterly_financials f
+    JOIN fact_daily_prices p 
+        ON f.security_key = p.security_key
+        AND p.price_date = f.reporting_period_end
+    WHERE f.reporting_period_end >= '2020-01-01'
+    GROUP BY reporting_period_end
+)
+SELECT 
+    m.indicator_date,
+    m.indicator_value AS bond_yield_10y,
+    pe.avg_pe AS market_pe,
+    (1.0 / pe.avg_pe * 100) - m.indicator_value AS equity_risk_premium
+FROM fact_macro_indicators m
+JOIN market_pe pe ON m.indicator_date = pe.reporting_period_end
+WHERE m.indicator_name = 'INDIA_10Y_YIELD'
+ORDER BY m.indicator_date;
+```
+
+---
+
+#### Macro Data Sources
+
+**Indian Sources**:
+- **RBI (Reserve Bank of India)**: Interest rates, forex reserves, money supply
+- **MOSPI (Ministry of Statistics)**: GDP, CPI, WPI, IIP
+- **SEBI**: Market statistics, FII/DII flows
+- **NSE/BSE**: Index data, market breadth
+
+**Global Sources**:
+- **Bloomberg**: Real-time commodity prices, global indices
+- **Federal Reserve**: US rates, economic data
+- **Trading Economics**: Multi-country indicators
+- **IMF/World Bank**: Long-term economic data
+
+---
+
+#### Macro Data Quality Considerations
+
+**Publication Lag**:
+- GDP: 2-month lag (Q1 data published in May)
+- CPI/WPI: 2-week lag
+- IIP: 6-week lag
+- PMI: Same month (early release)
+
+**Revisions**:
+- GDP often revised in subsequent quarters
+- Store both preliminary and final values
+- Track revision history for accuracy
+
+**Seasonality**:
+- Many indicators have seasonal patterns
+- Use seasonally adjusted values when available
+- Consider YoY comparisons instead of MoM
+
+**Data Frequency Mismatch**:
+- Daily prices vs monthly macro data
+- Use forward-fill for daily alignment
+- Or aggregate prices to monthly for analysis
+
+---
+
 ## Summary
 
 ### Dataset Overview
@@ -717,6 +995,7 @@ LIMIT 10;
 | fact_daily_prices | ~500M | Daily | 2000-present | Price/volume data |
 | fact_quarterly_financials | ~50K | Quarterly | 2010-present | Financial statements |
 | fact_daily_flows | ~10M | Daily | 2015-present | Institutional flows |
+| fact_macro_indicators | ~50K | Varies | 2000-present | Economic indicators |
 | corporate_actions | ~5K | Event | 2000-present | Splits, dividends |
 | dim_security | ~3K | SCD Type 2 | All time | Security master |
 | dim_date | ~9K | Static | 2000-2030 | Date dimension |
