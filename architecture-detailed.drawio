@@ -1,0 +1,331 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="5.0" etag="detailed-aws-arch" version="22.1.0" type="device">
+  <diagram name="Research Data Platform V2 - Detailed Architecture" id="detailed-arch">
+    <mxGraphModel dx="2400" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="Research Data Platform V2 - Complete Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="1200" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- AWS Cloud Border -->
+        <mxCell id="aws-cloud" value="" style="sketch=0;outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud;strokeColor=#FF9900;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#FF9900;dashed=0;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="1920" height="1480" as="geometry" />
+        </mxCell>
+        
+        <!-- ========== DATA SOURCES LAYER ========== -->
+        <mxCell id="sources-region" value="External Data Sources" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=14;fontStyle=1;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;strokeColor=#00A4A6;fillColor=#E6F6F7;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="1840" height="140" as="geometry" />
+        </mxCell>
+        
+        <!-- Market Data Provider -->
+        <mxCell id="source1-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=2;dashed=1;" vertex="1" parent="sources-region">
+          <mxGeometry x="40" y="40" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="source1-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#277116;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.generic_database;" vertex="1" parent="sources-region">
+          <mxGeometry x="50" y="50" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="source1-text" value="Market Data Provider&#xa;• Daily OHLCV&#xa;• 3000+ securities&#xa;• 20 years history" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="sources-region">
+          <mxGeometry x="100" y="50" width="110" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Financial Statements -->
+        <mxCell id="source2-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=2;dashed=1;" vertex="1" parent="sources-region">
+          <mxGeometry x="260" y="40" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="source2-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#277116;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.generic_database;" vertex="1" parent="sources-region">
+          <mxGeometry x="270" y="50" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="source2-text" value="Financial Statements&#xa;• Quarterly reports&#xa;• Income, Balance, CF&#xa;• Restatements tracked" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="sources-region">
+          <mxGeometry x="320" y="50" width="110" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- FII/DII Flows -->
+        <mxCell id="source3-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=2;dashed=1;" vertex="1" parent="sources-region">
+          <mxGeometry x="480" y="40" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="source3-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#277116;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.generic_database;" vertex="1" parent="sources-region">
+          <mxGeometry x="490" y="50" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="source3-text" value="FII/DII Flows&#xa;• Institutional flows&#xa;• Daily buy/sell data&#xa;• Net flow calculations" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="sources-region">
+          <mxGeometry x="540" y="50" width="110" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Corporate Actions -->
+        <mxCell id="source4-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=2;dashed=1;" vertex="1" parent="sources-region">
+          <mxGeometry x="700" y="40" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="source4-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#277116;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.generic_database;" vertex="1" parent="sources-region">
+          <mxGeometry x="710" y="50" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="source4-text" value="Corporate Actions&#xa;• Splits, dividends&#xa;• Mergers, bonuses&#xa;• Adjustment factors" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="sources-region">
+          <mxGeometry x="760" y="50" width="110" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- ========== INGESTION LAYER ========== -->
+        <mxCell id="ingestion-vpc" value="Ingestion Layer - VPC" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=14;fontStyle=1;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc;strokeColor=#248814;fillColor=#E9F3E6;verticalAlign=top;align=left;spacingLeft=30;fontColor=#248814;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="300" width="1840" height="380" as="geometry" />
+        </mxCell>
+        
+        <!-- S3 Data Lake -->
+        <mxCell id="s3-container" value="S3 Data Lake" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7AA116;strokeColor=#ffffff;strokeWidth=2;verticalAlign=top;fontStyle=1;fontColor=#ffffff;fontSize=13;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="40" y="40" width="1760" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- Raw Zone -->
+        <mxCell id="s3-raw-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7AA116;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="60" y="70" width="520" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-raw-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bucket;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="70" y="80" width="50" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-raw-text" value="Raw Zone&#xa;raw/prices/ | raw/financials/ | raw/flows/ | raw/corporate_actions/&#xa;• Event notifications enabled • Versioning ON • Lifecycle: Archive after 90 days" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="130" y="80" width="440" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- Processed Zone -->
+        <mxCell id="s3-processed-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#7AA116;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="600" y="70" width="380" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-processed-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bucket;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="610" y="80" width="50" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-processed-text" value="Processed Zone&#xa;processed/validated/&#xa;• Retention: 180 days" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="670" y="85" width="300" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Quarantine Zone -->
+        <mxCell id="s3-quarantine-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#D13212;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1000" y="70" width="380" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-quarantine-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#D13212;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bucket_with_objects;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1010" y="80" width="50" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="s3-quarantine-text" value="Quarantine Zone&#xa;quarantine/failed_validation/&#xa;• Failed records for review" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1070" y="85" width="300" height="45" as="geometry" />
+        </mxCell>
+        
+        <!-- Lambda Validators -->
+        <mxCell id="lambda-container" value="Lambda Validators (Event-Driven)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7100;strokeColor=#ffffff;strokeWidth=2;verticalAlign=top;fontStyle=1;fontColor=#ffffff;fontSize=13;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="40" y="180" width="860" height="180" as="geometry" />
+        </mxCell>
+        
+        <!-- Price Validator -->
+        <mxCell id="lambda1-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="60" y="215" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lambda1-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.lambda_function;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="70" y="225" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="lambda1-text" value="Price Validator&#xa;• Schema validation&#xa;• Null checks&#xa;• Price range (>0)&#xa;• Outlier detection (±50%)&#xa;• Duplicate check&#xa;Timeout: 5 min" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="130" y="225" width="110" height="110" as="geometry" />
+        </mxCell>
+        
+        <!-- Financial Validator -->
+        <mxCell id="lambda2-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="270" y="215" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lambda2-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.lambda_function;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="280" y="225" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="lambda2-text" value="Financial Validator&#xa;• Required fields&#xa;• Balance sheet balance&#xa;• Referential integrity&#xa;• Metric ranges&#xa;• Restatement check&#xa;Timeout: 5 min" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="340" y="225" width="110" height="110" as="geometry" />
+        </mxCell>
+        
+        <!-- Flow Validator -->
+        <mxCell id="lambda3-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="480" y="215" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lambda3-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.lambda_function;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="490" y="225" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="lambda3-text" value="Flow Validator&#xa;• FII/DII data check&#xa;• Value reconciliation&#xa;• Date validation&#xa;• Sum checks&#xa;• Completeness&#xa;Timeout: 5 min" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="550" y="225" width="110" height="110" as="geometry" />
+        </mxCell>
+        
+        <!-- Data Quality Engine -->
+        <mxCell id="dq-engine-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#ED7100;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="690" y="215" width="190" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="dq-engine-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.lambda_function;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="700" y="225" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="dq-engine-text" value="DQ Engine&#xa;• 20+ validation rules&#xa;• Quarantine failed data&#xa;• SNS alerts&#xa;• Log to Redshift&#xa;Target: >99% pass rate" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="760" y="225" width="110" height="110" as="geometry" />
+        </mxCell>
+        
+        <!-- SQS DLQ -->
+        <mxCell id="sqs-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#E7157B;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="920" y="215" width="180" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="sqs-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.queue;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="930" y="225" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="sqs-text" value="SQS DLQ&#xa;• Failed validations&#xa;• Retry logic (3x)&#xa;• Exponential backoff&#xa;• Manual review queue&#xa;Retention: 14 days" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="990" y="225" width="100" height="110" as="geometry" />
+        </mxCell>
+
+        
+        <!-- Glue ETL Jobs -->
+        <mxCell id="glue-container" value="AWS Glue ETL (Incremental Processing)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8C4FFF;strokeColor=#ffffff;strokeWidth=2;verticalAlign=top;fontStyle=1;fontColor=#ffffff;fontSize=13;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1120" y="180" width="680" height="180" as="geometry" />
+        </mxCell>
+        
+        <!-- Daily Prices ETL -->
+        <mxCell id="glue1-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8C4FFF;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1140" y="215" width="200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="glue1-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.glue;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1150" y="225" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="glue1-text" value="Daily Prices ETL&#xa;• Job bookmarks ON&#xa;• Incremental load&#xa;• Corporate actions&#xa;• 20M rows/15 min&#xa;Schedule: Daily 2 AM" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1210" y="225" width="120" height="110" as="geometry" />
+        </mxCell>
+        
+        <!-- Financials ETL -->
+        <mxCell id="glue2-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8C4FFF;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1360" y="215" width="200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="glue2-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.glue;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1370" y="225" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="glue2-text" value="Financials ETL&#xa;• Bi-temporal load&#xa;• Restatement handling&#xa;• 240K rows/25 min&#xa;• Vault pattern&#xa;Schedule: Quarterly" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1430" y="225" width="120" height="110" as="geometry" />
+        </mxCell>
+        
+        <!-- Flows ETL -->
+        <mxCell id="glue3-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#8C4FFF;strokeWidth=2;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1580" y="215" width="200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="glue3-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.glue;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1590" y="225" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="glue3-text" value="Flows ETL&#xa;• FII/DII aggregation&#xa;• Net flow calc&#xa;• 15M rows/20 min&#xa;• Idempotent&#xa;Schedule: Daily 3 AM" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="ingestion-vpc">
+          <mxGeometry x="1650" y="225" width="120" height="110" as="geometry" />
+        </mxCell>
+        
+        <!-- ========== REDSHIFT DATA WAREHOUSE ========== -->
+        <mxCell id="redshift-vpc" value="Amazon Redshift - Data Warehouse (Medallion Architecture)" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=14;fontStyle=1;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc;strokeColor=#3334B9;fillColor=#E6F2FF;verticalAlign=top;align=left;spacingLeft=30;fontColor=#3334B9;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="720" width="1840" height="520" as="geometry" />
+        </mxCell>
+        
+        <!-- Redshift Cluster Info -->
+        <mxCell id="redshift-cluster-container" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#3334B9;strokeWidth=2;" vertex="1" parent="redshift-vpc">
+          <mxGeometry x="40" y="40" width="280" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="redshift-cluster-icon" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#3334B9;strokeColor=none;dashed=0;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.redshift;" vertex="1" parent="redshift-vpc">
+          <mxGeometry x="50" y="50" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="redshift-cluster-text" value="Redshift Cluster&#xa;• 2-4 nodes RA3.4xlarge&#xa;• Auto-scaling enabled&#xa;• Concurrency scaling (10x)&#xa;• WLM: ETL/Analyst/Admin&#xa;Cost: $3,000-4,500/month" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex=ll>
+  </mxCe/>
+      ometry" s="ge"50" aeight=" h620width="" "4301150" y=" x=<mxGeometry     ">
+     -vpct="redshift"1" parenertex= v";fontSize=9;unded=0wrap;roSpace=;whiteign=topticalAlerft;vlee;align==none;fillColornonokeColor=1;strl="text;htm" style=edup: 5-10x spenefit Be: +300 GB |orageM IST | St Daily 7 A;Refresh:&#xaot)shrrent snaps (cuentdex_constitu_current_inxa;• mvns)&# 3Y returM, 6M, 1Y,(1M, 3urns olling_ret#xa;• mv_rx faster)&ratios, 5-10nancial fitios (20+ puted_ramv_precom"• t" value="mv-lisCell id=        <mxll>
+    </mxCe   ry" />
+ eomet"g"20" as= height=th="250"="410" wid yx="1150"mxGeometry        <c">
+   shift-vp"red" parent=x="1" vertentStyle=1ze=10;fofontSirounded=0;ace=wrap;hiteSpop;wicalAlign=tleft;vertlign=olor=none;afillColor=none;trokeChtml=1;st;texyle="d)" st (Precomputeized Viewse="Materiale" valumv-titlmxCell id=" <
+       ell>    </mxC    " />
+"geometry80" as=="eight"640" hwidth=405" " y="4011eometry x=" <mxG
+         ">vpchift-t="reds1" parenrtex=" veashed=1;"keWidth=1;d6;stro6b65eColor=#d;strokfffffor=#fol;fillCap;html=1ce=wr1;whiteSpa"rounded=e=tylalue="" siner" vconta"mv-mxCell id=
+        <->ws -alized VieriMate   <!--             
+ mxCell>
+    </>
+    eometry" /" as="g="50" heightidth="460" w430="" y="650ry xetxGeom          <mt-vpc">
+"redshif1" parent= vertex="ontSize=9;";founded=0e=wrap;reSpac=top;whitrticalAlignft;vegn=le=none;ali;fillColor=noneolorokeCstr1;"text;html=tyle=st joins" sfaes for  all nod toicatedxa;Replal)&#empor, tcordsnts (50K reitueconst dim_index_xa;•alendar)&#l cfiscadates, (10K • dim_date SCD)&#xa;pe 2 rities, Ty security (5K"• dim_secuist" value="dim-lid=Cell       <mx/mxCell>
+       </>
+   "geometry" " as=20height="dth="250" wi" ="41050" y"6 x= <mxGeometry        -vpc">
+ edshift parent="r1"="1" vertexfontStyle=tSize=10;ded=0;fonce=wrap;roun;whiteSpan=topticalAligt;ver;align=lef=nonelColor;filnoneokeColor=str;html=1;="textle ALL)" stySTSTYLE:s (DIablemension T="Dile" valuedim-titCell id="       <mxmxCell>
+    </  >
+    /metry"" as="geoght="80heith="480" id w="405"" y0 x="64xGeometry <m
+         ">vpc"redshift-" parent=ex="1ed=1;" vertsh;dakeWidth=1d6b656;stroolor=#;strokeCffffff=#orColl=1;fill;htmce=wrapd=1;whiteSpaoundetyle="rlue="" svaontainer" "dim-c<mxCell id=        -->
+s Tableension    <!-- Dim  
+     ll>
+      xCe     </my" />
+   tr as="geomeht="50"0" heig width="5430""4"70" y=ometry x=  <mxGe      c">
+  edshift-vp"rent=x="1" parverteSize=9;" fontrounded=0;ap;=wreSpacegn=top;whitticalAlign=left;vere;alilor=nonCo;fillor=none1;strokeColext;html=" style="tpercentile) (95th : <5sy time | Queron: 3-4xsi#xa;Compresa)&II datFII/D (15M rows, al_flowsionutact_instit#xa;• ft-in-time)&oinrows, p240K ls (ncialy_finaarter• fact_quy_key)&#xa;e, securitY: price_datTKE, SOR (20M rowspricesaily_fact_d"• t" value=act-lisll id="fxCe
+        <m  </mxCell>/>
+      eometry" as="g" "20" height= width="250"410"x="70" y=ometry    <mxGe">
+       t-vpchifent="reds"1" parrtex==1" vetyle;fontSze=10;fontSirounded=0ce=wrap;op;whiteSpaign=tt;verticalAlign=lefalnone;llColor=one;fi=ntrokeColor1;sml="text;htyle=)" stcurity_key: seKEYISTables (De="Fact T" valuact-titlexCell id="f   <m
+     ll>  </mxCe     
+ metry" />geo as="ght="80"0" heiwidth="5605" "40" y=ry x="6   <mxGeomet
+       t-vpc">shif"red parent=rtex="1"ed=1;" veWidth=1;dashoketr6;sb65=#d6strokeColorff;fffffillColor=#=1;rap;htmlhiteSpace=wounded=1;w style="r""value=" erfact-contain="<mxCell id       ables -->
+ -- Fact T        <! 
+       l>
+    </mxCel" />
+    ometry" as="get="20 heigh00""7 width=375"" y=" x="60eometry  <mxG        c">
+redshift-vpparent=""1" ertex=;" ve=2ntStylize=9;fo0;fontSnded=ap;roupace=wrp;whiteSicalAlign=toft;vertgn=lenone;aliillColor=one;fColor=n=1;stroketmlxt;h"teyle=ies" sternd quSub-5-secos • zed viewaterialis • Moned aggregatiecomputics • Prytfor analmized : Opti"Purposelue=on-desc" vaentatill id="pres    <mxCe
+    </mxCell>       " />
+ eometry150" as="gt="eigh60" h" width="17 y="350 x="40"try <mxGeome     ">
+    shift-vpc="redrent" pax="1 verteze=12;";fontSitStyle=1ign=top;fonticalAldth=2;verokeWi6b656;strolor=#drokeC=#fff2cc;stllColorap;html=1;fiace=wr;whiteSped=1und="ro stylear Schema" - StGold)ONE (TATION Ze="PRESENr" valun-containe"presentatio<mxCell id=    ->
+    (Gold) -Zone tion senta!-- Pre     < 
+        Cell>
+     </mx>
+     try" /s="geomet="50" a heighth="380" wid"260"90" y= x="13etry    <mxGeomc">
+      shift-vpt="redarenex="1" p" vertSize=9;ntded=0;foe=wrap;rounp;whiteSpacicalAlign=toft;vertign=lenone;alolor==none;fillClorl=1;strokeCotext;htm" style="mentals for increater mark#xa;• High-wueries)&ll qudit_log (aery_axa;• quQ metrics)&#lts (Dality_resu_qu)&#xa;• datangjob tracki_metrics (ob_je="• etlvalul-tables" ntroCell id="co       <mxCell>
+      </mx/>
+   y" metrgeos="ht="20" aheig" "180dth=40" wi="2"1390" yometry x=   <mxGe  ">
+     ft-vpc"redshi" parent=vertex="1=1" Styleize=10;fonted=0;fontSp;rounde=wrawhiteSpacign=top;Alrticalveign=left;ne;alfillColor=noor=none;;strokeColt;html=1ex style="tAudit"trol & value="Conol-title" l id="contr     <mxCelCell>
+           </mx
+eometry" />80" as="g" height="h="400" widt235380" y="metry x="1 <mxGeo       -vpc">
+  ftnt="redshiareex="1" p" vert;dashed=1;dth=1rokeWi;stolor=#82b366eCf;strokolor=#ffffftml=1;fillC;he=wrap=1;whiteSpacle="rounded" sty="ue" valontainer"control-cid=ell    <mxC    s -->
+ l Table!-- Contro        <   
+   l>
+  mxCel</      " />
+  ="geometryt="50" as"400" heigh width="260"y=x="950" y  <mxGeometr>
+         ft-vpc""redshit=" parenx="1 verte"ontSize=9;ounded=0;frap;rce=witeSpaop;whlAlign=tft;vertica=le=none;alignolorone;fillCrokeColor=n1;sttml=le="text;hrrent" styid_to, is_cu valom,• valid_frTITY)&#xa;ENte keys (ID Surrogaxa;•y)&#stormbership hiituents (menst_co_indexxa;• dim)&#hangesector c(track s_security "• dimlue=ables" vascd-t id="xCell
+        <m  </mxCell>    " />
+  ometry" as="ge"200" height=width="18"240"  y="950"eometry x=      <mxG">
+    vpcift-rent="redshpatex="1" erStyle=1" vize=10;font=0;fontSp;roundedce=wrahiteSpaAlign=top;wt;verticaln=lefigr=none;allCololor=none;fileCook;str;html=1le="texts" stySCDType 2 ue="vald-title" ll id="scmxCe   <     Cell>
+</mx      />
+  "geometry" as=ht="80" eig"420" h" width=0" y="235 x="94rymxGeomet    <
+      ift-vpc">shnt="redx="1" pare verte;dashed=1;"eWidth=12b366;strokkeColor=#8;stro#ffffffillColor=rap;html=1;fpace=witeSnded=1;wh style="rou=""r" valueontaine-c id="scdllxCe      <m->
+  SCDs - Type 2 !--        <      
+Cell>
+     </mx    />
+ eometry" 50" as="gight="0" heth="40" wid60" y="2ry x="510et    <mxGeom
+      -vpc">dshiftt="re"1" parenertex= vize=9;"nded=0;fontSrourap;hiteSpace=wn=top;wrticalAlig;veftone;align=lelor=nlColor=none;filrokeCost1;;html=style="text" cesdjusted prijusted & unaxa;• Both adion logic&#alculatnt c;• Adjustmeactors)&#xaive fs (cumulatntce_adjustmexa;• prirgers)&#idends, me, divons (splitsrporate_acti• co" value="ions-tables-actcorp" id=  <mxCell     ell>
+    </mxC
+      />eometry""g="20" as=" height80" width="1" y="240510etry x="  <mxGeom  ">
+      pcdshift-vnt="re="1" pare=1" vertexntStyle10;fo=0;fontSize=;roundedapce=wrwhiteSpaop;icalAlign=teft;vertne;align=lor=noollCone;filrokeColor=nhtml=1;sttext;=" stylegine"Enctions ate Aue="Corporal-title" vonsp-acti"corell id=       <mxC
+ l></mxCel    
+     />"geometry""80" as=t="420" heigh" width=y="235" 500try x="eome <mxG      vpc">
+   edshift- parent="r"1"vertex=d=1;" ;dasheidth=1b366;strokeWkeColor=#82stroffffff;fillColor=#;html=1;rap=wcehiteSpanded=1;wle="rou"" styer" value=ainns-contiocorp-actid="Cell  <mx  s -->
+     orate Actionrp!-- Co      <       
+  ll>
+ /mxCe   <
+     " />eometry"g"50" as== height00"th="40" wid"26"70" y= x=<mxGeometry   ">
+       pcft-vedshi="r" parentrtex="1" ventSize=9;ded=0;fowrap;rouniteSpace=;whlAlign=toperticat;v;align=lefner=noolor=none;fillCColotroke=1;st;htmlyle="texection" stange detff for ch;• Hash dixa&#atepdver und-only, nexa;• Appe&#d history)(unadjusteces _pria;• vaultion_date)&#xaticbl_to, pu, validrom_flidancials (va_finltalue="• vaules" vtablt-aud="v   <mxCell i>
+     mxCell
+        </" />tryas="geome0" "2 height="width="180y="240" " 0etry x="7mxGeom <        t-vpc">
+ "redshif=ent"1" par" vertex=;fontStyle=1ontSize=10nded=0;fce=wrap;roup;whiteSpagn=toliticalA;ver;align=leftlColor=noneone;filtrokeColor=nl=1;s;htm="textstyleemporal)" i-tes (Bbl"Vault Ta value="lt-titlel id="vau   <mxCell>
+     </mxCel        metry" />
+geos="" a"80ght=20" hei width="4235"60" y="="try xmxGeome        <pc">
+  "redshift-v parent=""1=rtexhed=1;" veaskeWidth=1;d66;stroolor=#82b3strokeCffff;r=#ffColo;filll=1=wrap;htmhiteSpace"rounded=1;wle=e="" sty" valuntainer="vault-col id <mxCel     >
+  Tables ---- Vault        <!
+ 
+        xCell>
+        </m/>" ="geometryht="20" as00" heigh="7"205" widt60" y= x="xGeometry    <m  ">
+    pc"redshift-varent=="1" pexrtyle=2;" vetSt=9;fonzefontSided=0;p;rounSpace=wraiteAlign=top;whicalert=left;v=none;alignllColor;finoner=keColotml=1;stro"text;hstyle=ement" ity enforc• Data qualSCDs ype 2 ctions • Tte ang • Corpora versionimporal• Te logic : BusinessPurpose"esc" value=n-d"integratioid=ell <mxC      mxCell>
+   </       
+" />"geometry"150" as=" height=="1760thid80" w"40" y="1etry x= <mxGeom
+         ">ift-vpcredshent="ex="1" par;" verttSize=12fonyle=1;Stontn=top;fcalAligth=2;verti;strokeWidolor=#82b366;strokeC5e8d4illColor=#dml=1;fpace=wrap;ht1;whiteSed=="round" styler)ilve(SRATION ZONE INTEGlue="vainer" ration-conta id="integ     <mxCell
+    -->ilver)n Zone (Segratio- Int<!-
+            l>
+    /mxCel
+        <ry" />met" as="geoight="80580" heidth=" w y="65""try x="1200<mxGeome        ">
+  pc"redshift-vrent=x="1" parte veSize=9;"nt;foounded=0p;reSpace=wratop;whiticalAlign=n=left;vertaligone;Color=nne;fillolor=nokeC;html=1;strotyle="textrea" sy staging a;• Temporaroading&#xat parallel lFasts&#xa;• straines or condex#xa;• No inempotent)&oad (idfore lte bexa;• Truncaeatures:&#e="Falues" vurging-feat"stal id=<mxCel
+           </mxCell>     >
+geometry" / as="0"" height="2h="700="90" widt0" yry x="38Geomet         <mx">
+ hift-vpcarent="reds="1" p=9;" vertex=0;fontSizeed;roundce=wrapp;whiteSpalAlign=tocaleft;vertin=ligone;alColor=nor=none;fil;strokeColt;html=1"texstyle=ts" stituendex_con_inions | stgrporate_actco | stg_ows | stg_fl_financialsrices | stg stg_pes:able="Talules" vaging-tab="st  <mxCell id    >
+     </mxCell />
+     ometry"" as="geeight="200" hwidth="60"65" " y=380 x="eometry     <mxG">
+     edshift-vpcent="r par="1"" vertex=2;yleStfontntSize=9;ounded=0;foSpace=wrap;riteAlign=top;whcalleft;vertiign=alr=none;Colone;fillr=norokeColo;html=1;sttyle="text load" sor parallelon ftributi• EVEN disn etentioday rn • 7-ationsformmal traing • Minita landdae: Raw ue="Purposdesc" vald="staging-ll i     <mxCel>
+   </mxCel
+        " />="geometry"120" ast=eigh hdth="1440""40" wi y="360"ry x=etGeom  <mx     >
+   "edshift-vpc parent="r1"="vertex=12;" fontSizentStyle=1;op;foalAlign=tticth=2;verf;strokeWidebr=#6c8eColoc;strok=#dae8f=1;fillColore=wrap;htmleSpacd=1;whitrounde" style="ze)Bron (ING ZONEAGlue="STiner" vataging-conta id="s     <mxCell   ->
+ronze) -g Zone (BStagin     <!--    
+   ll>
+       </mxCe    try" />
+  eome100" as="gheight="90"  width="1"="50" y"120metry x=   <mxGeo
+       c">hift-vp"reds"1" parent=
