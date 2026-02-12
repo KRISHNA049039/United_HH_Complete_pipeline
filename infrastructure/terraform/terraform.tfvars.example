@@ -1,0 +1,21 @@
+# AWS Configuration
+aws_region = "ap-south-1"
+environment = "prod"
+
+# Network Configuration
+vpc_cidr = "10.0.0.0/16"
+availability_zones = ["ap-south-1a", "ap-south-1b"]
+
+# S3 Configuration
+bucket_prefix = "itus-capital-data"
+
+# Redshift Configuration
+redshift_cluster_identifier = "itus-research-platform"
+redshift_node_type = "ra3.4xlarge"
+redshift_number_of_nodes = 2
+redshift_database_name = "research_platform"
+redshift_master_username = "admin"  # Change this
+redshift_master_password = "CHANGE_ME_STRONG_PASSWORD"  # Change this
+
+# Monitoring Configuration
+alert_email = "ops@ituscapital.com"  # Change this
